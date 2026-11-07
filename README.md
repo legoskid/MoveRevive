@@ -43,6 +43,7 @@ assets/xposed_init        Xposed module entry-point declaration
 res/                     Launcher icon resources
 AndroidManifest.xml      Android and Xposed module metadata
 build.sh                 Plain Android SDK build
+```
 
 ## Build
 
