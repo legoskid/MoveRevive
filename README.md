@@ -1,24 +1,48 @@
 # MoveRevive
+![Banner. you can see the cleverness that I did with the 9 squares icon being the move rings.](Untitled.png)
 
-MoveRevive is an Android/Xposed module that keeps the Oculus Move fitness app usable after its Graph API endpoints stop responding. It intercepts Move's GraphQL requests and serves the small set of responses required by the app from a loopback HTTP responder.
+MoveRevive lets you use Oculus Move in 2026 via Xposed!
 
-## How it works
+**Works best on v74 and below. Newer headset versions may not be supported**
 
-- The Xposed hook targets `com.oculus.fitnesstracker`.
-- Requests to `https://graph.oculus.com/graphql...` are redirected to a local responder bound to `127.0.0.1`.
-- Known document IDs receive local JSON responses for account validation, dashboard data, and birthday information.
-- Unknown document IDs receive an empty GraphQL response.
-- The launcher activity opens Move's `FitnessTrackerActivity` and exits after a short delay, allowing MoveRevive to appear as the Move tile.
+## Requirements for setup
 
-The module does not log request bodies or access tokens.
+- Your Quest *with root access*
+- LSPosed (or other) installed and working
 
-## Requirements
+## Install
 
-- An Oculus/Meta Quest device with Oculus Move installed.
-- A compatible Xposed implementation, such as LSPosed, with support for modules targeting Android apps.
-- Android SDK platform 36 and build-tools 36.0.0 for building.
-- Java 8-compatible `javac`.
-- A shell with `find` available, such as Git Bash on Windows.
+Get the APK from Releases and install (here we do it with ADB):
+
+```sh
+adb install MoveRevive.apk
+```
+
+Open LSPosed and enable the module for Move `com.oculus.fitnesstracker`
+
+**Optional:** Create a birthday.txt file in `/sdcard/MoveRevive/` with your birthday in ISO format (YYYY-MM-DD). This is used to calculate your age for the Move app. If you don't create this file, the default date of `1990-01-01` will be used.
+
+Go to Unknown Sources and launch, go through the setup to start tracking!
+
+## Doesn't Work
+* Sharing
+* Fitness Friends
+* Phone sync
+* Cloud backup
+* Achievements
+
+## Project layout
+
+```text
+src/dev/moverevive/
+  LauncherActivity.java  Opens Oculus Move from the launcher tile
+  MoveRevive.java        Xposed hook and Graph API URL redirect
+  Responder.java         Loopback HTTP server and local JSON responses
+stubs/                   Minimal Xposed API stubs used only at compile time
+assets/xposed_init        Xposed module entry-point declaration
+res/                     Launcher icon resources
+AndroidManifest.xml      Android and Xposed module metadata
+build.sh                 Plain Android SDK build
 
 ## Build
 
@@ -44,54 +68,9 @@ To regenerate the launcher icon:
 python make_icon.py
 ```
 
-## Install and enable
-
-Install the APK with ADB:
-
-```sh
-adb install -r MoveRevive.apk
-```
-
-Then enable **MoveRevive** in the Xposed manager and scope it to:
-
-```text
-com.oculus.fitnesstracker
-```
-
-Reboot or restart the affected app/process after changing the module state. Launching the MoveRevive tile opens the installed Oculus Move app.
-
-## Birthday configuration
-
-The birthday query reads the first valid ISO date in:
-
-```text
-/sdcard/MoveRevive/birthday.txt
-```
-
-Example:
-
-```text
-1990-01-01
-```
-
-The file is read on every birthday request, so changing it does not require rebuilding the APK. If the file is missing or contains no valid date, the responder logs the condition through Xposed and uses `1990-01-01`.
-
-## Project layout
-
-```text
-src/dev/moverevive/
-  LauncherActivity.java  Opens Oculus Move from the launcher tile
-  MoveRevive.java        Xposed hook and Graph API URL redirect
-  Responder.java         Loopback HTTP server and local JSON responses
-stubs/                   Minimal Xposed API stubs used only at compile time
-assets/xposed_init        Xposed module entry-point declaration
-res/                     Launcher icon resources
-AndroidManifest.xml      Android and Xposed module metadata
-build.sh                 Plain Android SDK build
-```
-
 ## Notes
 
+```
 - The module is specific to the current Oculus Move package, React Native networking method signature, and known GraphQL document IDs.
 - The included Xposed stubs are compile-time-only and are not packaged into the APK.
-- The APK is signed with the standard Android debug keystore by the build script; it is intended for local installation and testing.
+```
