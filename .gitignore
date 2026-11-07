@@ -1,0 +1,20 @@
+# Build outputs
+build/
+*.apk
+*.idsig
+
+# Java/Python generated files
+*.class
+__pycache__/
+*.py[cod]
+
+# Android/Gradle local files
+.gradle/
+local.properties
+
+# IDE and OS files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
