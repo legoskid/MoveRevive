@@ -1,7 +1,7 @@
 # MoveRevive
 ![Banner. you can see the cleverness that I did with the 9 squares icon being the move rings.](Untitled.png)
 
-MoveRevive lets you use Oculus Move in 2026 via Xposed!
+MoveRevive lets you use Oculus Move in 2026 via Xposed! Please star my repo if you enjoy this!
 
 **Works best on v74 and below. Newer headset versions may not be supported**
 
