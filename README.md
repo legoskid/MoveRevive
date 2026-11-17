@@ -3,7 +3,9 @@
 
 MoveRevive lets you use Oculus Move in 2026 via Xposed! Please star my repo if you enjoy this!
 
-**Works best on v74 and below. Newer headset versions may not be supported**
+**Will work on v74 and below GUARANTEED. Newer may not be supported**
+
+**v2 versions definitely don't work right now (the move package is gone completely)**
 
 ## Requirements for setup
 
