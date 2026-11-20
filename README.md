@@ -28,7 +28,7 @@ adb install MoveRevive.apk
 
 Open LSPosed and enable the module for Move `com.oculus.fitnesstracker`
 
-**Optional:** Create a birthday.txt file in `/sdcard/MoveRevive/` with your birthday in ISO format (YYYY-MM-DD). This is used to calculate your age for the Move app. If you don't create this file, the default date of `1990-01-01` will be used.
+**Optional:** Make a folder on the root of your internal storage called "MoveRevive" and make a `birthday.txt` file in it with your birthday in ISO format (YYYY-MM-DD). This is used to calculate your age for the Move app. If you don't create this file, the default date of `1990-01-01` will be used.
 
 Go to Unknown Sources and launch, go through the setup to start tracking!
 
