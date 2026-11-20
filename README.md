@@ -3,7 +3,13 @@
 
 MoveRevive lets you use Oculus Move in 2026 via Xposed! Please star my repo if you enjoy this!
 
-**Will work on v74 and below GUARANTEED. Newer may not be supported**
+#### Compatible Versions:
+Expected Compatiblity: **v51 to v74 versions** should work
+* v2.1+: Oculus Move is not in the OS, Not supported
+* v72+: Not tested yet
+* v71: **Supported**
+* v51+: Not tested yet
+* v50-: Not working yet 
 
 **v2 versions definitely don't work right now (the move package is gone completely)**
 
